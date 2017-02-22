@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<template
+        format="5"
+        revision="6"
+        name="Recycler Activity"
+        minApi="9"
+        minBuildApi="14"
+        requireAppTheme="true"
+        description="Creates a new recycler activity ">
+
+    <category value="Activity"/>
+    <formfactor value="Mobile"/>
+
+    <parameter
+            id="activityClass"
+            name="Activity Name"
+            type="string"
+            constraints="class|unique|nonempty"
+            suggest="${layoutToActivity(layoutName)}"
+            default="MainActivity"
+            help="The name of the activity class to create"/>
+
+    <parameter
+            id="layoutName"
+            name="Layout Name"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="${activityToLayout(activityClass)}"
+            default="activity_main"
+            help="The name of the layout to create for the activity"/>
+
+
+    <parameter
+            id="layoutRowName"
+            name="Layout Row Name"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="item_row_${classToResource(activityClass)}"
+            default="item_row_main"
+            help="The name of the layout to create for the activity"/>                
+
+    <parameter
+            id="activityTitle"
+            name="Title"
+            type="string"
+            constraints="nonempty"
+            default="MainActivity"
+            suggest="${activityClass}"
+            help="The name of the activity. For launcher activities, the application title."/>
+
+
+    <parameter
+            id="modelName"
+            name="Model Name"
+            type="string"
+            constraints="nonempty"
+            suggest="Item"
+            default="${activityClass}Model"
+            help="Other example are 'Book,User, etc'"/>   
+
+
+    <parameter
+            id="adapterName"
+            name="Adapter Name"
+            type="string"
+            constraints="nonempty"
+            suggest="${modelName}Adapter"
+            default="${modelName}Adapter"
+            help="The name of the adapter file to create for the recycler"/>
+
+     
+
+    <parameter
+            id="menuName"
+            name="Menu Resource Name"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="menu_${classToResource(activityClass)}"
+            visibility="isNewProject!false"
+            default="menu_main"
+            help="The name of the resource file to create for the menu items"/>
+
+    <parameter
+            id="isLauncher"
+            name="Launcher Activity"
+            type="boolean"
+            default="false"
+            help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher"/>
+
+    <parameter
+            id="contentLayoutName"
+            name="Content Layout Name"
+            type="string"
+            constraints="layout|unique"
+            suggest="${activityToLayout(activityClass, 'content')}"
+            default="content_main"
+            visibility="false"
+            help="The name of the App Bar layout to create for the activity"/>
+   
+    <parameter
+        id="searchView"
+        name="Add SearchView"
+        type="enum"
+        default="no"
+        help="Select RecycleView  activity or RecycleView with SearchView bar activity" >
+        <option id="no">No</option>
+        <option id="yes">Yes</option>
+    </parameter>
+
+
+
+    <parameter
+            id="parentActivityClass"
+            name="Hierarchical Parent"
+            type="string"
+            constraints="activity|exists|empty"
+            default=""
+            help="The hierarchical parent activity, used to provide a default implementation for the 'Up' button"/>
+
+    <parameter
+            id="fragmentLayoutName"
+            name="Fragment Layout Name"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="${activityToLayout(activityClass, 'fragment')}"
+            default="fragment_main"
+            visibility="false"
+            help="The name of the layout to create for the activity's content fragment"/>
+
+    <parameter
+            id="packageName"
+            name="Package name"
+            type="string"
+            constraints="package"
+            default="com.mycompany.myapp"/>
+
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_recyclerview_activity.png</thumb>
+        <thumb searchView="no">template_recyclerview_activity.png</thumb>
+        <thumb searchView="yes">template_search.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl"/>
+
+</template>
