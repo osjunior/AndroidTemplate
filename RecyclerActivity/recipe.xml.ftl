@@ -1,16 +1,10 @@
 <?xml version="1.0"?>
 <recipe>
    <#include "../common/recipe_manifest.xml.ftl" />
-   <#include "../common/recipe_simple_dimens.xml" />
    <#include "../common/recipe_simple_menu.xml.ftl" />
 
    <merge from="../common/root/res/values/no_actionbar_styles.xml.ftl"
              to="${escapeXmlAttribute(resOut)}/values/styles.xml" />
-
-  <#if buildApi gte 21>
-    <merge from="../common/root/res/values-v21/no_actionbar_styles_v21.xml.ftl"
-             to="${escapeXmlAttribute(resOut)}/values-v21/styles.xml" /> 
-  </#if>
 
 
   <#if !(hasDependency('com.android.support:appcompat-v7'))>

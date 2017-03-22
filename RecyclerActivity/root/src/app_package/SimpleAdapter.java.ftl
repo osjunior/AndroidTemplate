@@ -8,6 +8,7 @@ import android.content.Context;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import android.widget.TextView;
+import ${packageName}.R;
 
 public class ${adapterName} extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<${modelName}> mDataSet;
